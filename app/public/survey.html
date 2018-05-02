@@ -195,7 +195,7 @@
       <div class="container">
         <p>
           <a href="/api/friends">API Friends List</a> |
-          <a target="_blank" href="https://github.com/mattbajorek/Friend-Finder">GitHub Repo</a>
+          <a target="_blank" href="https://github.com/mlanjula94/FriendFinder">GitHub Repo</a>
         </p>
       </div>
     </footer>
@@ -243,10 +243,9 @@
       // If all required fields are filled
       if (validateForm() == true) {
         // Create scores array
-        var q = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
         var scores = [];
-        for (var i in q) {
-          var val = $('#q' + q[i]).val();
+        for (var i=1 ; i<=10; i++) {
+          var val = $('#q' + i.toString()).val();
           scores.push(val)
         }
         // Create an object for the user's data
@@ -258,7 +257,7 @@
         // Grab the URL of the website
         var currentURL = window.location.origin;
         // AJAX post the data to the friends API. 
-        $.post(currentURL + "/api/friends", userData, function (data) {
+        $.post(currentURL + "/survey", userData, function (data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#matchName").text(data.name);
           $('#matchImg').attr("src", data.photo);
