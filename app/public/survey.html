@@ -38,9 +38,9 @@
     }
 
     img {
-      max-width: 100%;
+     
       height: auto;
-      display: block;
+      
     }
 
     a,
@@ -186,7 +186,7 @@
     <br>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-info btn-lg btn-block" id="submit">
+    <button type="submit" class="btn btn-info btn-lg btn-center text-center" id="submit">
       <i class="fa fa-check-circle" aria-hidden="true"></i> Submit</button>
 
     <hr>
@@ -208,16 +208,16 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header text-center">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h2 class="modal-title">Best Match</h2>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center">
           <h2 id="matchName"></h2>
-          <img id="matchImg" src="" alt="">
+          <img id="matchImg" height="150px" width="150px" src="" alt="">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="closeModel" type="button" class="btn btn-default btn-center" data-dismiss="modal">Close</button>
         </div>
       </div>
 
@@ -244,20 +244,36 @@
       if (validateForm() == true) {
         // Create scores array
         var scores = [];
-        for (var i=1 ; i<=10; i++) {
+        for (var i = 1; i <= 10; i++) {
           var val = $('#q' + i.toString()).val();
           scores.push(val)
         }
+
+        var userName = $("#name").val();
         // Create an object for the user's data
         var userData = {
-          name: $("#name").val(),
+          name: userName,
           photo: $("#photo").val(),
-          scores: scores
+          routeName: userName.replace(/\s+/g, "").toLowerCase(),
+          scores: [
+            $('#q1').val(),
+            $('#q2').val(),
+            $('#q3').val(),
+            $('#q4').val(),
+            $('#q5').val(),
+            $('#q6').val(),
+            $('#q7').val(),
+            $('#q8').val(),
+            $('#q9').val(),
+            $('#q10').val(),
+          ]
         }
+        console.log(userData)
         // Grab the URL of the website
         var currentURL = window.location.origin;
         // AJAX post the data to the friends API. 
-        $.post(currentURL + "/survey", userData, function (data) {
+
+        $.post(currentURL + "/api/friends", userData, function (data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#matchName").text(data.name);
           $('#matchImg').attr("src", data.photo);
@@ -270,6 +286,13 @@
       }
       return false;
     });
+
+    function closeModel(){
+      location.reload();
+    }
+
+    $(document).on("click", "#closeModel", closeModel);
+
   </script>
 
 </body>

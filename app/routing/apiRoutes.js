@@ -4,8 +4,8 @@ var friends = require('../data/friends.js');
 module.exports = function (app) {
 // Show all friends in API format
 
-app.get("/api/:friends?", function (req, res) {
-  var chosen = req.params.friends;
+app.get("/api/friends/:friend?", function (req, res) {
+  var chosen = req.params.friend;
 
   if (chosen) {
     for (var i = 0; i < friends.length; i++) {
@@ -21,24 +21,20 @@ app.get("/api/:friends?", function (req, res) {
     res.json(friends);
 	}
 })
-}
 
-/*
+
+
 // Get friend post req
-router.post('/api/friends', function(req, res){
-	// Read friends
-	var friends = jsonfile.readFileSync(file);
+app.post('/api/friends', function(req, res){
 	// Find friend
 	var index = findFriend(req.body,friends);
 	// Add friend
 	friends.push(req.body);
-	jsonfile.writeFileSync(file, friends, {spaces: 2});
+	//jsonfile.writeFileSync(file, friends, {spaces: 2});
 	// Respond to client with friend
-	res.json({
-		name: friends[index].name,
-		photo: friends[index].photo,
-	});
+	res.json(friends[index]);
 })
+}
 
 
 function findFriend(self,friends) {
@@ -66,4 +62,3 @@ function findFriend(self,friends) {
 	console.log(friend);
 	return friend.index;
 }
-*/

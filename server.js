@@ -7,7 +7,7 @@ var path = require("path");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.urlencoded({ extended: true}))
 
 // parse application/json
 app.use(bodyParser.json())
