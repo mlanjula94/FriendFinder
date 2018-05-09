@@ -7,13 +7,13 @@ http://protected-coast-16615.herokuapp.com/
 
 ## Screen Shots
 
-![Screen shot](app/public/images/SS1.png)
+![Screen shot]("app/images/SS1.png")
 Index Page
 
-![Screen shot 2](app/public/images/SS2.png)
+![Screen shot 2](app/images/SS2.png)
 Survey
 
-![Screen shot 2](app/public/images/SS3.png)
+![Screen shot 2](app/images/SS3.png)
 Result
 
 
